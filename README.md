@@ -1,5 +1,5 @@
 # ShAlly
-My allied bash QoL tools
+My allied bash/shell QoL tools
 
 ### Library:
 ## cloneall
