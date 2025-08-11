@@ -44,4 +44,24 @@ for dir in "$ROOT_DIR"/*/; do
             echo "   ❌ Firma GPG inválida o no verificable."
             # Opcional: continuar con la verificación o saltar
             # cd - > /dev/null
-            # con
+            # continue
+        fi
+
+        rm -f gpg_verify.log
+
+        # Verificar integridad con md5sum
+        echo "   ➡️ Verificando integridad de archivos..."
+        if md5sum -c hashes.md5 --quiet; then
+            echo "   ✅ Todos los hashes coinciden."
+        else
+            echo "   ❌ Hay archivos con hash diferente o que faltan."
+        fi
+
+        cd - > /dev/null
+    else
+        echo "⚠️  Saltando $dir (no es repo Git)"
+    fi
+done
+
+echo ""
+echo "✅ Proceso de verificación completado."
